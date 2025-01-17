@@ -1,1 +1,9 @@
-<p>cart-app works!</p>
+<h2>CATALOGO DE PRODUCTOS</h2>
+
+<catalog [products]="products" (productEventEmitter)="onAddCart($event)"> </catalog>
+
+@if (items.length > 0 ) {
+    <cart [items]="items"></cart>
+}@else {
+    <div class="alert alert-warning">No hay productos en el carro de compras</div>
+}
