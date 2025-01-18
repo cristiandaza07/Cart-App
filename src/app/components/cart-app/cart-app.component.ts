@@ -4,10 +4,11 @@ import { Product } from '../../models/product';
 import { CatalogComponent } from '../catalog/catalog.component';
 import { CartComponent } from '../cart/cart.component';
 import { CartItem } from '../../models/cartItem';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'cart-app',
-  imports: [CatalogComponent, CartComponent],
+  imports: [CatalogComponent, CartComponent, NavbarComponent],
   templateUrl: './cart-app.component.html'
 })
 export class CartAppComponent implements OnInit{
@@ -16,15 +17,19 @@ export class CartAppComponent implements OnInit{
 
   items: CartItem[] = [];
 
-  constructor(private service: ProductService){
+  total: number = 0;
 
-  }
+  showCart: boolean = false;
+
+  constructor(private service: ProductService){}
 
   ngOnInit(): void {
     this.products = this.service.findAll();
+    this.items = JSON.parse(sessionStorage.getItem('cart')!) || [];
+    this.calculateTotal();
   }
 
-  onAddCart(product: Product){
+  onAddCart(product: Product): void{
     const hasItem = this.items.find(item => {
       return item.product.id === product.id;
     });
@@ -39,5 +44,26 @@ export class CartAppComponent implements OnInit{
     }else{
       this.items = [... this.items, {product: {... product}, quantity: 1}];
     }
+    this.saveSession();
+    this.calculateTotal();
+  }
+
+  onDeleteCart(id: number): void{
+    this.items = this.items.filter(item => item.product.id !== id);
+    this.saveSession();
+    this.calculateTotal();
+  }
+
+  calculateTotal():void {
+    //utilizamos la función reduce para calcular el total
+    this.total = this.items.reduce( (acumulator, item) => acumulator + item.quantity * item.product.price, 0);
+  }
+
+  saveSession():void{
+    sessionStorage.setItem('cart', JSON.stringify(this.items));
+  }
+
+  openCart():void{
+    this.showCart = !this.showCart;
   }
 }
