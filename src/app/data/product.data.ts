@@ -27,9 +27,9 @@ export const products: Product[] = [
     },
     {
         id: 5,
-        name: 'Bicicleta',
-        description: 'Bicicleta todo terreno profesional',
-        price: 100
+        name: 'Casco',
+        description: 'Casco para bicicleta',
+        price: 30
     },
     {
         id: 6,
