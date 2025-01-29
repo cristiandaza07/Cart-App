@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-content">
     <div class="card-header">
-      <h5 class="card-title">Carro de Compras!</h5>
+      <h5 class="card-title">Carro de Compras</h5>
     </div>
     <div class="card-body">
     
@@ -9,15 +9,17 @@
             <table class="table table-hover table-striped text-center align-middle">
               <thead>
                 <tr>
-                  <th>Producto</th>
-                  <th>Precio</th>
-                  <th>Cantidad</th>
-                  <th>Total</th>
+                  <th></th>
+                  <th>PRODUCTO</th>
+                  <th>PRECIO</th>
+                  <th>CANTIDAD</th>
+                  <th>TOTAL</th>
                 </tr>
               </thead>
               <tbody>
                 @for (item of items; track $index) {
                 <tr>
+                  <td><img src="../../../assets/img/products/{{item.product.img}}" width="64" height="64" class="rounded float-end" alt="..."></td>
                   <td class="fw-bold">{{ item.product.name }}</td>
                   <td>${{ item.product.price }}</td>
                   <td>{{ item.quantity }}</td>
@@ -35,7 +37,7 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <td colspan="4" class="text-end fw-bold">TOTAL</td>
+                  <td colspan="5" class="text-end fw-bold">TOTAL:</td>
                   <td colspan="1" class="text-start fw-bold">${{ total }}</td>
                 </tr>
               </tfoot>
