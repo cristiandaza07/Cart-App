@@ -27,8 +27,8 @@ export class CatalogComponent implements OnInit{
     //this.products = this.productService.findAll(); 
   }
 
-  onAddCart(product: Product){
-    this.sharingDataService.productEventEmitter.emit(product);
+  onAddCart(productData: { product: Product, quantity: number }){
+    this.sharingDataService.productDataEvenEmitter.emit(productData);
   }
 
   

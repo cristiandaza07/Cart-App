@@ -1,9 +1,22 @@
 <div class="card">
   <img src="../../../assets/img/products/{{product.img}}" class="card-img-top" alt="imagen de producto">
-  <div class="card-body">
-    <h5 class="card-title">{{ product.name }}</h5>
-    <p class="card-text">{{ product.description }}</p>
-    <p class="card-text">Precio: ${{ product.price }}</p>
-    <button class="btn btn-primary" (click)="onAddCart(product)">Agregar al carrito</button>
+  <span class="badge text-bg-secondary">{{product.stock}} disponibles</span>
+  <div class="card-body text-center">
+    <h4 class="card-title ">{{ product.name }}</h4>
+    <p class="card-text mb-2">{{ product.description }}</p>
+    <h5 class="card-text text-success fw-bold mb-3">${{ product.price }}</h5>
+    <div class="row">
+      <div class="col-8">
+        <button class="btn btn-primary" [disabled]="quantity == 0" (click)="onAddCart(product, quantity)">
+          <i class="bi bi-cart"></i> Agregar al carrito</button>
+      </div>
+      <div class="col-4 ps-0">
+        <div class="d-flex justify-content-around align-items-center">
+          <button class="btn btn-outline-dark btn-sm" [disabled]="quantity == 0" (click)="decrementQuantity()"><i class="bi bi-dash"></i></button>
+          <p class="fs-5 mb-0 px-2">{{quantity}}</p>
+          <button class="btn btn-outline-dark btn-sm" [disabled]="quantity == product.stock" (click)="incrementQuantity()"><i class="bi bi-plus-lg"></i></button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

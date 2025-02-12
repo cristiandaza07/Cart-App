@@ -40,9 +40,9 @@ export class CartAppComponent implements OnInit {
   }
 
   onAddCart(): void {
-    this.sharingDataService.productEventEmitter.subscribe(product =>{
-      
-      this.store.dispatch(add({ product }));
+    this.sharingDataService.productDataEvenEmitter.subscribe(productData => {
+      const { product, quantity } = productData;
+      this.store.dispatch(add({product, quantity }));
       this.store.dispatch(total());
 
       this.router.navigate(['/carrito']);

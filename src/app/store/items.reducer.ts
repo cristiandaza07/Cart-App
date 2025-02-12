@@ -14,7 +14,7 @@ export const initialState: ItemsState = {
 
 export const itemsReducer = createReducer(
     initialState,
-    on(add, (state, { product }) => {
+    on(add, (state, { product, quantity }) => {
         const hasItem = state.items.find((item: CartItem) => item.product.id === product.id);
 
         if (hasItem) {
@@ -23,7 +23,7 @@ export const itemsReducer = createReducer(
                     if (item.product.id === product.id) {
                         return {
                             ...item,
-                            quantity: item.quantity + 1
+                            quantity: quantity
                         };
                     }
                     return item;
@@ -32,7 +32,7 @@ export const itemsReducer = createReducer(
             };
         } else {
             return {
-                items: [...state.items, { product: { ...product }, quantity: 1 }],
+                items: [...state.items, { product: { ...product }, quantity: quantity }],
                 total: state.total
             };
         }

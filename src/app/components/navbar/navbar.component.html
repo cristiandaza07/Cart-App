@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">CATALOGO DE PRODUCTOS</a>
+      <a class="navbar-brand" href="#">
+        <i class="bi bi-bag-check"></i> CATALOGO DE PRODUCTOS</a>
       <button
         class="navbar-toggler"
         type="button"
@@ -17,12 +18,12 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" 
             [routerLink]="['/catalogo']"
-            >Catalogo</a>
+            ><i class="bi bi-card-list"></i> Catalogo</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" role="button"
             [routerLink]="['/carrito']" 
-              >Carrito ({{ items.length }} Productos)</a>
+              ><i class="bi bi-cart"></i> Carrito ({{ items.length }} Productos)</a>
           </li>
         </ul>
       </div>
